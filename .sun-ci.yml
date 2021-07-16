@@ -6,7 +6,7 @@ stages:
 jobs:
 - name: Lint checking
   stage: lint
-  image: androidsdk/android-29:latest
+  image: androidsdk/android-30:latest
   environment:
       # This is Android review pull request box 
     ROOM_ID: "96370317"
