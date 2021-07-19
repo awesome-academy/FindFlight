@@ -3,7 +3,8 @@ package com.sun.findflight.data.source.remote.api
 object ApiConstants {
     const val SCHEME_HTTPS = "https"
     const val AUTHORITY_API_FLIGHT = "api.amadeus.com"
-    const val CONTENT = "v1"
+    const val CONTENT_VER1 = "v1"
+    const val CONTENT_VER2 = "v2"
 
     const val TOKEN = "security/oauth2/token"
     const val SEARCH_PLACE = "reference-data/locations"

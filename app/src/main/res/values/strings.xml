@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FindFlight</string>
     <string name="app_slogan">Save your time and money</string>
+    <string name="error_parse_json">Error parse json</string>
 </resources>

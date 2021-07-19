@@ -1,25 +1,30 @@
 package com.sun.findflight.data.model
 
 import android.os.Parcelable
+import com.sun.findflight.utils.BaseConst
+import com.sun.findflight.utils.SegmentModelConst
 import kotlinx.parcelize.Parcelize
+import org.json.JSONObject
 
 @Parcelize
 data class Segment(
-    val duration: String,
-    val departureCode: String,
-    val departureTerminal: Int,
-    val departureTime: String,
-    val arrivalCode: String,
-    val arrivalTerminal: Int,
-    val arrivalTime: String,
+    val departure: Landing,
+    val arrival: Landing,
     val carrierCode: String,
-    val carrierNumber: Int,
-    val aircraftNumber: Int,
-    val numberOfStops: Int,
-    val countryCode: String,
-    val cabin: String,
-    val fareBasis: String,
-    val fareClass: String,
-    val weightCheckedBad: Double,
-    val flightId: Int,
-) : Parcelable
+    val carrierNumber: String,
+    val aircraftNumber: String,
+    var departureCountryImage: String?,
+    var arrivalCountryImage: String?,
+) : Parcelable {
+
+    constructor(jsonObject: JSONObject) : this(
+        departure = Landing(jsonObject.getJSONObject(SegmentModelConst.DEPARTURE)),
+        arrival = Landing(jsonObject.getJSONObject(SegmentModelConst.ARRIVAL)),
+        carrierCode = jsonObject.getString(BaseConst.CARRIER_CODE),
+        carrierNumber = jsonObject.getString(SegmentModelConst.CARRIER_NUMBER),
+        aircraftNumber = jsonObject.getJSONObject(SegmentModelConst.AIRCRAFT)
+            .getString(SegmentModelConst.AIRCRAFT_CODE),
+        departureCountryImage = null,
+        arrivalCountryImage = null
+    )
+}
