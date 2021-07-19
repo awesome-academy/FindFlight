@@ -4,11 +4,17 @@ import android.net.Uri
 
 object ApiQuery {
 
+    private fun createBaseUri() = Uri.Builder()
+        .scheme(ApiConstants.SCHEME_HTTPS)
+        .authority(ApiConstants.AUTHORITY_API_FLIGHT)
+
     fun queryToken() = createBaseUri()
+        .appendPath(ApiConstants.CONTENT_VER1)
         .appendEncodedPath(ApiConstants.TOKEN)
         .toString()
 
     fun querySearchNearestAirport(latitude: String, longitude: String) = createBaseUri()
+        .appendPath(ApiConstants.CONTENT_VER1)
         .appendEncodedPath(ApiConstants.SEARCH_PLACE)
         .appendPath(ApiConstants.NEAREST_AIRPORT)
         .appendQueryParameter(ApiConstants.LATITUDE, latitude)
@@ -22,8 +28,10 @@ object ApiQuery {
 
     fun querySearchPlaces(keyword: String, countryCode: String?): String {
         val uri = createBaseUri()
+            .appendPath(ApiConstants.CONTENT_VER1)
             .appendEncodedPath(ApiConstants.SEARCH_PLACE)
             .appendQueryParameter(ApiConstants.SUBTYPE, ApiConstants.DEFAULT_SUB_TYPE)
+            .appendQueryParameter(ApiConstants.KEYWORD, keyword)
             .appendQueryParameter(
                 ApiConstants.MAX_ITEM_PER_PAGE,
                 ApiConstants.DEFAULT_MAX_ITEM_PER_PAGE
@@ -39,9 +47,10 @@ object ApiQuery {
         oneWay: Boolean?,
         duration: String?,
         nonStop: Boolean?,
-        maxPrice: Int?
     ): String {
-        val uri = createBaseUri().appendPath(ApiConstants.SEARCH_FLIGHT)
+        val uri = createBaseUri()
+            .appendPath(ApiConstants.SEARCH_FLIGHT)
+            .appendPath(ApiConstants.CONTENT_VER1)
         destination?.let {
             uri.appendPath(ApiConstants.FLIGHT_CHEAPEST_DATE)
         } ?: uri.appendPath(ApiConstants.FLIGHT_INSPIRATION)
@@ -52,12 +61,46 @@ object ApiQuery {
         oneWay?.let { uri.appendQueryParameter(ApiConstants.ONEWAY, it.toString()) }
         duration?.let { uri.appendQueryParameter(ApiConstants.DURATION, it) }
         nonStop?.let { uri.appendQueryParameter(ApiConstants.NONSTOP, it.toString()) }
+
+        return uri.toString()
+    }
+
+    fun queryFlightDetailSearch(
+        originLocationCode: String,
+        destinationLocationCode: String,
+        departureDate: String,
+        returnDate: String?,
+        adults: Int,
+        children: Int?,
+        infants: Int?,
+        travelClass: String?,
+        nonStop: Boolean?,
+        currencyCode: String?,
+        maxPrice: Int?
+    ): String {
+        val uri = createBaseUri()
+            .appendPath(ApiConstants.CONTENT_VER2)
+            .appendPath(ApiConstants.SEARCH_FLIGHT)
+            .appendPath(ApiConstants.FLIGHT_OFFER)
+            .appendQueryParameter(ApiConstants.ORIGIN_LOCATION_CODE, originLocationCode)
+            .appendQueryParameter(ApiConstants.DESTINATION_LOCATION_CODE, destinationLocationCode)
+            .appendQueryParameter(ApiConstants.DEPARTURE_DATE, departureDate)
+        returnDate?.let { uri.appendQueryParameter(ApiConstants.RETURN_DATE, it) }
+        uri.appendQueryParameter(ApiConstants.ADULTS, adults.toString())
+            .appendQueryParameter(ApiConstants.MAX_ITEMS, ApiConstants.DEFAULT_MAX_ITEM)
+
+        children?.let { uri.appendQueryParameter(ApiConstants.CHILDREN, it.toString()) }
+        infants?.let { uri.appendQueryParameter(ApiConstants.INFANTS, it.toString()) }
+        travelClass?.let { uri.appendQueryParameter(ApiConstants.TRAVEL_CLASS, it) }
+        nonStop?.let { uri.appendQueryParameter(ApiConstants.NONSTOP, it.toString()) }
+        currencyCode?.let { uri.appendQueryParameter(ApiConstants.CURRENCY_CODE, it) }
         maxPrice?.let { uri.appendQueryParameter(ApiConstants.MAX_PRICE, it.toString()) }
+
         return uri.toString()
     }
 
     fun queryMostTraveledDestination(originCityCode: String, period: String) = createBaseUri()
-        .appendPath(ApiConstants.CONTENT)
+        .appendPath(ApiConstants.CONTENT_VER1)
         .appendEncodedPath(ApiConstants.ANALYTICS)
         .appendQueryParameter(ApiConstants.ORIGIN_CITY_CODE, originCityCode)
         .appendQueryParameter(ApiConstants.PERIOD, period)
@@ -68,8 +111,11 @@ object ApiQuery {
         )
         .toString()
 
-    private fun createBaseUri() = Uri.Builder()
+    fun queryImage(countryCode: String) = Uri.Builder()
+        .appendPath(ApiConstants.CONTENT_VER1)
         .scheme(ApiConstants.SCHEME_HTTPS)
-        .authority(ApiConstants.AUTHORITY_API_FLIGHT)
-        .appendPath(ApiConstants.CONTENT)
+        .authority(ApiConstants.AUTHORITY_API_IMAGE)
+        .appendPath(ApiConstants.IMAGE_SIZE)
+        .appendPath("${countryCode}${ApiConstants.FILE_EXTENSION}")
+        .toString()
 }
