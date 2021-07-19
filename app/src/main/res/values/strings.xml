@@ -2,4 +2,7 @@
     <string name="app_name">FindFlight</string>
     <string name="app_slogan">Save your time and money</string>
     <string name="error_parse_json">Error parse json</string>
+    <string name="title_discover">Discover</string>
+    <string name="title_search">Search</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
