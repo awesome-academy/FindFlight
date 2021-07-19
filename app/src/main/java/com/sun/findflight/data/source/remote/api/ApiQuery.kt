@@ -112,7 +112,6 @@ object ApiQuery {
         .toString()
 
     fun queryImage(countryCode: String) = Uri.Builder()
-        .appendPath(ApiConstants.CONTENT_VER1)
         .scheme(ApiConstants.SCHEME_HTTPS)
         .authority(ApiConstants.AUTHORITY_API_IMAGE)
         .appendPath(ApiConstants.IMAGE_SIZE)
