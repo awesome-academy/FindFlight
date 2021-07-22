@@ -15,4 +15,8 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <style name="SwitchButton">
+        <item name="colorControlActivated">@color/color_sunset_orange</item>
+    </style>
 </resources>
