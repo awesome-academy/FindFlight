@@ -1,7 +1,5 @@
 package com.sun.findflight.ui.splash
 
-import android.content.res.Resources
-import com.sun.findflight.R
 import com.sun.findflight.data.repository.TokenRepository
 import com.sun.findflight.data.source.ultils.OnDataCallBack
 

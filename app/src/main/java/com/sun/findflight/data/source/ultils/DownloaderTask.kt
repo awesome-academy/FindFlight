@@ -1,9 +1,7 @@
 package com.sun.findflight.data.source.ultils
 
 import android.os.AsyncTask
-import com.sun.findflight.R
 import java.util.concurrent.CancellationException
-import java.util.concurrent.TimeoutException
 
 class DownloaderTask<I, O>(
     private val callback: OnDataCallBack<O>,
