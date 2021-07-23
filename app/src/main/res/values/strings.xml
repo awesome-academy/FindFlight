@@ -18,6 +18,7 @@
     <string name="text_other_info">Other information</string>
     <string name="text_return_date">Return date</string>
     <string name="text_passengers">Passengers</string>
+    <string name="text_default_passenger">1 ADULT</string>
     <string name="text_travel_class">Travel class</string>
     <string name="text_currency">Currency</string>
     <string name="text_leave_empty">(leave empty if you want our suggestions)</string>
