@@ -10,6 +10,8 @@
     <string name="title_favorite">Favorite</string>
     <string name="text_set_time_reminder">Set time reminder</string>
     <string name="text_choose_place">Choose places</string>
+    <string name="text_choose_date">Choose date</string>
+    <string name="text_choose_return_date">Choose return date</string>
     <string name="text_choose_departure_date">Choose departure date</string>
     <string name="text_oneway">Oneway trip:</string>
     <string name="text_from_required">From*:</string>
@@ -18,10 +20,22 @@
     <string name="text_other_info">Other information</string>
     <string name="text_return_date">Return date</string>
     <string name="text_passengers">Passengers</string>
-    <string name="text_default_passenger">1 ADULT</string>
+    <string name="title_default_passenger">1 Adult</string>
     <string name="text_travel_class">Travel class</string>
     <string name="text_currency">Currency</string>
     <string name="text_leave_empty">(leave empty if you want our suggestions)</string>
     <string name="text_sort">Sort</string>
     <string name="text_filter">Filter</string>
+    <string name="text_age_adult">Age 12+</string>
+    <string name="text_adult">Adult</string>
+    <string name="text_child">Child</string>
+    <string name="text_age_child">Age 2–11</string>
+    <string name="text_infant">Infant</string>
+    <string name="text_age_infant">Age 0–1</string>
+    <string name="text_adult_default">1</string>
+    <string name="text_passenger_default">0</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_apply">Apply</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
