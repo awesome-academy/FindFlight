@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.sun.findflight.R
 import com.sun.findflight.base.BaseFragment
 import com.sun.findflight.databinding.FragmentHomeBinding
+import com.sun.findflight.ui.addpassenger.AddPassengerFragment
 import com.sun.findflight.utils.chooseDate
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
@@ -64,6 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                 textSearchReturnDate,
                 resources.getString(R.string.text_choose_return_date)
             )
+            textChangePassenger -> AddPassengerFragment().show(parentFragmentManager, null)
             imageSwapPlaces -> swapTextViewContent(textSearchPlaceFrom, textSearchPlaceTo)
             imageCancelPlaceTo -> textSearchPlaceTo.text = ""
             imageCancelDateFrom -> textSearchDateFrom.text = ""

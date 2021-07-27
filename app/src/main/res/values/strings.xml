@@ -3,6 +3,9 @@
     <string name="app_slogan">Save your time and money</string>
     <string name="connection_timeout">Connection timeout</string>
     <string name="error_parse_json">Error parse json</string>
+    <string name="error_over_people_number">Max 9 passengers!</string>
+    <string name="error_below_adult_number">At least 1 adult!</string>
+    <string name="error_common">Something wrong…</string>
     <string name="title_discover">Discover</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search by name (airport, city)</string>
@@ -36,6 +39,5 @@
     <string name="text_passenger_default">0</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_apply">Apply</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_add_passenger">ADD PASSENGER</string>
 </resources>
