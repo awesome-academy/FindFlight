@@ -56,6 +56,6 @@ object ApiConstants {
     const val SORT_BY_TRAVELERS_SCORE = "analytics.travelers.score"
 
     const val AUTHORITY_API_IMAGE = "flagcdn.com"
-    const val IMAGE_SIZE = "144x108"
+    const val IMAGE_SIZE = "112x84"
     const val FILE_EXTENSION = ".png"
 }
