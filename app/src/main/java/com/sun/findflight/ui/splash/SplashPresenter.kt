@@ -1,5 +1,6 @@
 package com.sun.findflight.ui.splash
 
+import com.sun.findflight.R
 import com.sun.findflight.data.repository.TokenRepository
 import com.sun.findflight.data.source.ultils.OnDataCallBack
 
@@ -15,7 +16,7 @@ class SplashPresenter(
             }
 
             override fun onFailure(e: Exception?) {
-                view.showMessage(ERROR_GET_TOKEN)
+                view.showMessage(R.string.error_no_internet)
             }
 
         })
@@ -23,9 +24,5 @@ class SplashPresenter(
 
     override fun getData() {
         updateToken()
-    }
-
-    companion object {
-        const val ERROR_GET_TOKEN = "Error! Can only use offline function!"
     }
 }
