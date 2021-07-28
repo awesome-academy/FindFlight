@@ -26,7 +26,7 @@ object ApiQuery {
         )
         .toString()
 
-    fun querySearchPlaces(keyword: String, countryCode: String?): String {
+    fun querySearchPlaces(keyword: String, countryCode: String? = null): String {
         val uri = createBaseUri()
             .appendPath(ApiConstants.CONTENT_VER1)
             .appendEncodedPath(ApiConstants.SEARCH_PLACE)

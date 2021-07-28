@@ -40,4 +40,11 @@
     <string name="text_cancel">Cancel</string>
     <string name="text_apply">Apply</string>
     <string name="text_add_passenger">ADD PASSENGER</string>
+    <string name="text_place_type">Type</string>
+    <string name="text_place_name">Name</string>
+    <string name="text_place_detailed_name">Detailed name</string>
+    <string name="text_place_city_name">City name</string>
+    <string name="text_place_country_name">Country name</string>
+    <string name="text_place_timezone">Timezone</string>
+    <string name="text_around_current_location">Around current location</string>
 </resources>
