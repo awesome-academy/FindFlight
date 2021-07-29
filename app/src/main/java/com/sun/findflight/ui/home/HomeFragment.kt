@@ -7,17 +7,19 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.sun.findflight.R
 import com.sun.findflight.base.BaseFragment
+import com.sun.findflight.data.model.Place
 import com.sun.findflight.databinding.FragmentHomeBinding
 import com.sun.findflight.ui.addpassenger.AddPassengerFragment
-import com.sun.findflight.utils.chooseDate
+import com.sun.findflight.ui.searchPlace.SearchPlaceFragment
+import com.sun.findflight.utils.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
     private var adult = DEFAULT_ADULT_SEAT
     private var child = NO_PASSENGER
     private var infant = NO_PASSENGER
-    private var placeFromCode = ""
-    private var placeToCode = ""
+    private var placeFromObject: Place? = null
+    private var placeToObject: Place? = null
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding =
         FragmentHomeBinding::inflate
@@ -53,6 +55,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
     override fun onClick(v: View?): Unit = with(viewBinding) {
         when (v) {
+            textSearchPlaceFrom -> parentFragmentManager.addFragment(
+                R.id.frameMain,
+                SearchPlaceFragment(),
+                KEY_PLACE_FROM
+            )
+            textSearchPlaceTo -> parentFragmentManager.addFragment(
+                R.id.frameMain,
+                SearchPlaceFragment(),
+                KEY_PLACE_TO
+            )
             textSearchDateFrom -> parentFragmentManager.chooseDate(
                 textSearchDateFrom,
                 resources.getString(R.string.text_choose_date)
@@ -83,13 +95,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
             viewLifecycleOwner
         ) { key, bundle ->
             if (key == requestKey) {
-                val result = bundle.get(KEY_DATA) as Pair<*, *>
+                val result = bundle.getParcelable<Place>(KEY_DATA)
                 if (requestKey == KEY_PLACE_FROM) {
-                    placeFromCode = result.first.toString()
-                    textView.text = result.second.toString()
+                    placeFromObject = result
+                    textView.text = result?.detailedName
                 } else if (requestKey == KEY_PLACE_TO) {
-                    placeToCode = result.first.toString()
-                    textView.text = result.second.toString()
+                    placeToObject = result
+                    textView.text = result?.detailedName
                 }
             }
         }
@@ -115,9 +127,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
     private fun swapTextViewContent(textView1: TextView, textView2: TextView) {
         if (textView1.text.isNotEmpty() && textView2.text.isNotEmpty()) {
-            val temp = textView1.text
-            textView1.text = textView2.text
-            textView2.text = temp
+            textView1.text = textView2.text.also { textView2.text = textView1.text }
+            placeFromObject = placeToObject.also { placeToObject = placeFromObject }
         }
     }
 

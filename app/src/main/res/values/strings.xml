@@ -3,8 +3,10 @@
     <string name="app_slogan">Save your time and money</string>
     <string name="connection_timeout">Connection timeout</string>
     <string name="error_parse_json">Error parse json</string>
+    <string name="error_cant_find_place">Can\'t find your place</string>
     <string name="error_over_people_number">Max 9 passengers!</string>
     <string name="error_below_adult_number">At least 1 adult!</string>
+    <string name="error_no_internet">Error! Can only use offline function!</string>
     <string name="error_common">Something wrong…</string>
     <string name="title_discover">Discover</string>
     <string name="title_home">Home</string>
@@ -47,4 +49,11 @@
     <string name="text_place_country_name">Country name</string>
     <string name="text_place_timezone">Timezone</string>
     <string name="text_around_current_location">Around current location</string>
+    <string name="text_package">package</string>
+    <string name="text_permission_granted">Permission Granted</string>
+    <string name="text_permission_denied">Permission Denied, this function may not work correctly</string>
+    <string name="text_turn_on_gps">Turn on GPS to get location!</string>
+    <string name="text_required_permission">Permission Required</string>
+    <string name="text_open_setting">Settings</string>
+    <string name="text_permission_explain">This feature need location permission to work, please turn it on in settings</string>
 </resources>

@@ -11,5 +11,6 @@ interface SearchPlaceContract {
 
     interface Presenter : BasePresenter {
         fun getPlaces(keyword: String)
+        fun getNearestPlaces(latitude: String, longitude: String)
     }
 }
