@@ -111,10 +111,10 @@ object ApiQuery {
         )
         .toString()
 
-    fun queryImage(countryCode: String) = Uri.Builder()
+    fun queryImage(countryCode: String, imageSize: String? = ApiConstants.IMAGE_SIZE) = Uri.Builder()
         .scheme(ApiConstants.SCHEME_HTTPS)
         .authority(ApiConstants.AUTHORITY_API_IMAGE)
-        .appendPath(ApiConstants.IMAGE_SIZE)
+        .appendPath(imageSize)
         .appendPath("${countryCode}${ApiConstants.FILE_EXTENSION}")
         .toString()
 }

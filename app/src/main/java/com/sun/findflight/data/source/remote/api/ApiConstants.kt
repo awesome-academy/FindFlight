@@ -34,7 +34,7 @@ object ApiConstants {
     const val LATITUDE = "latitude"
     const val LONGITUDE = "longitude"
     const val RADIUS = "radius"
-    const val DEFAULT_RADIUS = "200"
+    const val DEFAULT_RADIUS = "100"
 
     const val SUBTYPE = "subType"
     const val DEFAULT_SUB_TYPE = "AIRPORT,CITY"

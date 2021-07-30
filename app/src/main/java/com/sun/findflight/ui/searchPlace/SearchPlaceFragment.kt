@@ -82,7 +82,8 @@ class SearchPlaceFragment : BaseFragment<FragmentSearchPlaceBinding>(), SearchPl
     }
 
     override fun initData() {
-
+        val repository = RepositoryUtils.getPlaceRepository()
+        presenter = SearchPlacePresenter(this, repository)
     }
 
     override fun showPlaces(listPlace: List<Place>) {
