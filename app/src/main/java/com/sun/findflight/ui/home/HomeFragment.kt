@@ -5,11 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import com.sun.findflight.R
 import com.sun.findflight.base.BaseFragment
+import com.sun.findflight.data.model.BasicFlight
 import com.sun.findflight.data.model.Place
 import com.sun.findflight.databinding.FragmentHomeBinding
 import com.sun.findflight.ui.addpassenger.AddPassengerFragment
+import com.sun.findflight.ui.basicflightslist.BasicFlightsListFragment
 import com.sun.findflight.ui.searchPlace.SearchPlaceFragment
 import com.sun.findflight.utils.*
 
@@ -69,22 +73,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                 textSearchDateFrom,
                 resources.getString(R.string.text_choose_date)
             )
-            textSearchDateTo -> parentFragmentManager.chooseDate(
-                textSearchDateTo,
-                resources.getString(R.string.text_choose_date)
-            )
+            textSearchDateTo -> {
+                if (textSearchDateFrom.text.isEmpty()) {
+                    context?.showToast(getString(R.string.text_choose_date_from_first))
+                } else {
+                    parentFragmentManager.chooseDate(
+                        textSearchDateTo,
+                        resources.getString(R.string.text_choose_date)
+                    )
+                }
+            }
             textSearchReturnDate -> parentFragmentManager.chooseDate(
                 textSearchReturnDate,
                 resources.getString(R.string.text_choose_return_date)
             )
             textChangePassenger -> AddPassengerFragment().show(parentFragmentManager, null)
             imageSwapPlaces -> swapTextViewContent(textSearchPlaceFrom, textSearchPlaceTo)
-            imageCancelPlaceTo -> textSearchPlaceTo.text = ""
-            imageCancelDateFrom -> textSearchDateFrom.text = ""
+            imageCancelPlaceTo -> {
+                placeToObject = null
+                textSearchPlaceTo.text = ""
+            }
+            imageCancelDateFrom -> {
+                textSearchDateFrom.text = ""
+                textSearchDateTo.text = ""
+            }
             imageCancelDateTo -> textSearchDateTo.text = ""
             imageCancelReturnDate -> textSearchReturnDate.text = ""
             imageDropdownTravelClass -> spinnerTravelClass.performClick()
             imageDropdownCurrency -> spinnerCurrency.performClick()
+            buttonFindFlight -> findFlight()
             else -> Unit
         }
     }
@@ -132,6 +149,49 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         }
     }
 
+    private fun findFlight() {
+        if (placeFromIsValid()) {
+            with(viewBinding) {
+                var basicFlight: BasicFlight? = null
+                val oneWay = switchOneway.isChecked
+                val dateFrom = extractString(textSearchDateFrom)
+                val dateTo = extractString(textSearchDateTo)
+                val returnDate = extractString(textSearchReturnDate)
+                val travelClass = spinnerTravelClass.selectedItem.toString()
+                val currencyCode = spinnerCurrency.selectedItem.toString().split(" ")[0]
+                val fragment = BasicFlightsListFragment()
+                var departureDate: String? = null
+                dateFrom?.let { departureDate = it }
+                dateTo?.let { departureDate += ",$it" }
+                placeFromObject?.let {
+                    basicFlight = BasicFlight(
+                        origin = it.iataCode,
+                        destination = placeToObject?.iataCode,
+                        departureDate = departureDate,
+                        oneWay = oneWay,
+                        returnDate = returnDate,
+                        adult = adult,
+                        child = child,
+                        infant = infant,
+                        travelClass = travelClass,
+                        currencyCode = currencyCode
+                    )
+                }
+                openFlightFragment(basicFlight, fragment)
+            }
+        }
+    }
+
+    private fun placeFromIsValid() = viewBinding.textSearchPlaceFrom.text.isNotEmpty()
+
+    private fun extractString(textView: TextView) =
+        if (textView.text.isNotEmpty()) textView.text.toString() else null
+
+    private fun openFlightFragment(basicFlight: BasicFlight?, fragment: Fragment) {
+        fragment.arguments = bundleOf(DATA_BASIC_FLIGHT to basicFlight)
+        parentFragmentManager.addFragment(R.id.frameMain, fragment)
+    }
+
     companion object {
         const val KEY_PLACE_FROM = "from_place"
         const val KEY_PLACE_TO = "to_place"
@@ -139,5 +199,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         const val KEY_DATA = "data"
         const val NO_PASSENGER = "0"
         const val DEFAULT_ADULT_SEAT = "1"
+        const val DATA_BASIC_FLIGHT = "basic_flight_data"
     }
 }

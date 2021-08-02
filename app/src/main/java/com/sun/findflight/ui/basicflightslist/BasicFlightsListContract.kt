@@ -2,6 +2,7 @@ package com.sun.findflight.ui.basicflightslist
 
 import com.sun.findflight.base.BasePresenter
 import com.sun.findflight.base.BaseView
+import com.sun.findflight.data.model.BasicFlight
 import com.sun.findflight.data.model.Flight
 
 interface BasicFlightsListContract {
@@ -10,6 +11,6 @@ interface BasicFlightsListContract {
     }
 
     interface Presenter : BasePresenter {
-
+        fun getFlights(basicFlight: BasicFlight)
     }
 }

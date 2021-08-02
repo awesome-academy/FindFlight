@@ -25,7 +25,7 @@ object ApiConstants {
     const val DESTINATION = "destination"
     const val DEPARTURE_DATE = "departureDate"
     const val RETURN_DATE = "returnDate"
-    const val ONEWAY = "oneway"
+    const val ONEWAY = "oneWay"
     const val DURATION = "duration"
     const val NONSTOP = "nonStop"
     const val MAX_PRICE = "maxPrice"
