@@ -3,14 +3,13 @@ package com.sun.findflight.ui.basicflightslist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sun.findflight.base.BaseFragment
+import com.sun.findflight.data.model.BasicFlight
 import com.sun.findflight.data.model.Flight
 import com.sun.findflight.databinding.FragmentBasicFlightsListBinding
 import com.sun.findflight.ui.basicflightslist.adapter.BasicFlightListAdapter
+import com.sun.findflight.ui.home.HomeFragment
 import com.sun.findflight.ui.main.MainActivity
-import com.sun.findflight.utils.closeKeyboard
-import com.sun.findflight.utils.hide
-import com.sun.findflight.utils.show
-import com.sun.findflight.utils.showToast
+import com.sun.findflight.utils.*
 
 class BasicFlightsListFragment :
     BaseFragment<FragmentBasicFlightsListBinding>(),
@@ -20,6 +19,7 @@ class BasicFlightsListFragment :
         FragmentBasicFlightsListBinding::inflate
     private val containerContext by lazy { context as MainActivity }
     private var presenter: BasicFlightsListPresenter? = null
+    private var basicFlight: BasicFlight? = null
     private val flightListAdapter by lazy {
         BasicFlightListAdapter(
             mutableListOf(),
@@ -37,7 +37,12 @@ class BasicFlightsListFragment :
     }
 
     override fun initData() {
+        val repository = RepositoryUtils.getFlightRepository()
+        presenter = BasicFlightsListPresenter(this, repository)
 
+        val bundle = this.arguments
+        basicFlight = bundle?.getParcelable(HomeFragment.DATA_BASIC_FLIGHT)
+        basicFlight?.let { getFlights(it) }
     }
 
     override fun showFlights(flights: List<Flight>) {
@@ -58,6 +63,10 @@ class BasicFlightsListFragment :
         viewBinding.progressBarFlight.hide()
     }
 
+    private fun getFlights(basicFlight: BasicFlight) {
+        presenter?.getFlights(basicFlight)
+    }
+
     private fun itemFlightClick(flight: Flight) {
 
     }
@@ -66,4 +75,5 @@ class BasicFlightsListFragment :
         containerContext.setBackButtonStatus(false)
         super.onDetach()
     }
+
 }

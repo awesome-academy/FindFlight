@@ -3,6 +3,8 @@ package com.sun.findflight.utils
 object BaseConst {
     const val DATA = "data"
     const val DICTIONARY = "dictionaries"
+    const val LOCATION = "locations"
+    const val DETAILED_NAME = "detailedName"
     const val ANALYTICS = "analytics"
     const val FLIGHTS = "flights"
     const val TRAVELERS = "travelers"
@@ -10,6 +12,7 @@ object BaseConst {
     const val ORIGIN = "origin"
     const val DESTINATION = "destination"
     const val DEPARTURE_DATE = "departureDate"
+    const val RETURN_DATE = "returnDate"
     const val PRICE = "price"
     const val TOTAL = "total"
     const val LINK = "links"

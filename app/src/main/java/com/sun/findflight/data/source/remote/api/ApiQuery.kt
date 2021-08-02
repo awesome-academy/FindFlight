@@ -45,12 +45,10 @@ object ApiQuery {
         destination: String?,
         departureDate: String?,
         oneWay: Boolean?,
-        duration: String?,
-        nonStop: Boolean?,
     ): String {
         val uri = createBaseUri()
-            .appendPath(ApiConstants.SEARCH_FLIGHT)
             .appendPath(ApiConstants.CONTENT_VER1)
+            .appendPath(ApiConstants.SEARCH_FLIGHT)
         destination?.let {
             uri.appendPath(ApiConstants.FLIGHT_CHEAPEST_DATE)
         } ?: uri.appendPath(ApiConstants.FLIGHT_INSPIRATION)
@@ -59,8 +57,7 @@ object ApiQuery {
         destination?.let { uri.appendQueryParameter(ApiConstants.DESTINATION, it) }
         departureDate?.let { uri.appendQueryParameter(ApiConstants.DEPARTURE_DATE, it) }
         oneWay?.let { uri.appendQueryParameter(ApiConstants.ONEWAY, it.toString()) }
-        duration?.let { uri.appendQueryParameter(ApiConstants.DURATION, it) }
-        nonStop?.let { uri.appendQueryParameter(ApiConstants.NONSTOP, it.toString()) }
+        uri.appendQueryParameter(ApiConstants.NONSTOP, false.toString())
 
         return uri.toString()
     }
@@ -111,7 +108,7 @@ object ApiQuery {
         )
         .toString()
 
-    fun queryImage(countryCode: String, imageSize: String? = ApiConstants.IMAGE_SIZE) = Uri.Builder()
+    fun queryImage(countryCode: String, imageSize: String = ApiConstants.IMAGE_SIZE) = Uri.Builder()
         .scheme(ApiConstants.SCHEME_HTTPS)
         .authority(ApiConstants.AUTHORITY_API_IMAGE)
         .appendPath(imageSize)

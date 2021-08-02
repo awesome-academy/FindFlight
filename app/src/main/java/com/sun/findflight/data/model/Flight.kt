@@ -7,22 +7,22 @@ import org.json.JSONObject
 
 @Parcelize
 data class Flight(
-    val origin: String,
-    val destination: String,
+    val originCode: String,
+    val destinationCode: String,
+    var origin: String?,
+    var destination: String?,
     val departureDate: String,
     val returnDate: String,
     val flightLink: String,
-    var originCountryImage: String?,
-    var destinationCountryImage: String?,
 ) : Parcelable {
 
     constructor(jsonObject: JSONObject) : this(
-        origin = jsonObject.getString(BaseConst.ORIGIN),
-        destination = jsonObject.getString(BaseConst.DESTINATION),
+        originCode = jsonObject.getString(BaseConst.ORIGIN),
+        destinationCode = jsonObject.getString(BaseConst.DESTINATION),
+        origin = null,
+        destination = null,
         departureDate = jsonObject.getString(BaseConst.DEPARTURE_DATE),
-        returnDate = jsonObject.getString(BaseConst.DEPARTURE_DATE),
+        returnDate = jsonObject.getString(BaseConst.RETURN_DATE),
         flightLink = jsonObject.getJSONObject(BaseConst.LINK).getString(BaseConst.FLIGHT_OFFERS),
-        originCountryImage = null,
-        destinationCountryImage = null,
     )
 }

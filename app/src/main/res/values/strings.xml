@@ -17,13 +17,18 @@
     <string name="text_age_infant">Age 0–1</string>
     <string name="text_apply">Apply</string>
     <string name="text_around_current_location">Around current location</string>
+    <string name="text_available_seats">Available Seats</string>
     <string name="text_cancel">Cancel</string>
+    <string name="text_carrier">Carrier</string>
     <string name="text_child">Child</string>
     <string name="text_choose_date">Choose date</string>
+    <string name="text_choose_date_from_first">Must choose date from first!</string>
     <string name="text_choose_departure_date">Choose departure date</string>
     <string name="text_choose_place">Choose places</string>
     <string name="text_choose_return_date">Choose return date</string>
     <string name="text_currency">Currency</string>
+    <string name="text_departure_date">Departure date</string>
+    <string name="text_field_required">This field is required!</string>
     <string name="text_filter">Filter</string>
     <string name="text_from">From:</string>
     <string name="text_from_required">From*:</string>
@@ -44,6 +49,7 @@
     <string name="text_place_name">Name</string>
     <string name="text_place_timezone">Timezone</string>
     <string name="text_place_type">Type</string>
+    <string name="text_price">Price</string>
     <string name="text_required_permission">Permission Required</string>
     <string name="text_return">:Return</string>
     <string name="text_return_date">Return date</string>
