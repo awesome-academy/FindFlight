@@ -11,6 +11,8 @@ import com.sun.findflight.R
 import com.sun.findflight.base.BaseActivity
 import com.sun.findflight.databinding.ActivityMainBinding
 import com.sun.findflight.ui.home.HomeFragment
+import com.sun.findflight.utils.hide
+import com.sun.findflight.utils.show
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
 
@@ -71,6 +73,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
     fun hideSearchMenu() {
         mainMenu?.findItem(R.id.menuReminder)?.isVisible = true
         mainMenu?.findItem(R.id.menuSearch)?.isVisible = false
+    }
+
+    fun setBottomNavigationVisibility(visibility: Boolean) = with (viewBinding) {
+        if (visibility) {
+            bottomAppBar.show()
+            fabHome.show()
+        } else {
+            bottomAppBar.hide()
+            fabHome.hide()
+        }
     }
 
     companion object {

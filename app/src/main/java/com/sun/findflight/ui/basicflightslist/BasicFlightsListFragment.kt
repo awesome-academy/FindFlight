@@ -2,6 +2,8 @@ package com.sun.findflight.ui.basicflightslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import com.sun.findflight.R
 import com.sun.findflight.base.BaseFragment
 import com.sun.findflight.data.model.BasicFlight
 import com.sun.findflight.data.model.Flight
@@ -9,6 +11,7 @@ import com.sun.findflight.databinding.FragmentBasicFlightsListBinding
 import com.sun.findflight.ui.basicflightslist.adapter.BasicFlightListAdapter
 import com.sun.findflight.ui.home.HomeFragment
 import com.sun.findflight.ui.main.MainActivity
+import com.sun.findflight.ui.offerflightslist.OfferFlightsListFragment
 import com.sun.findflight.utils.*
 
 class BasicFlightsListFragment :
@@ -56,7 +59,6 @@ class BasicFlightsListFragment :
     override fun showLoading() {
         flightListAdapter.updateData(mutableListOf())
         viewBinding.progressBarFlight.show()
-        closeKeyboard()
     }
 
     override fun hideLoading() {
@@ -68,7 +70,16 @@ class BasicFlightsListFragment :
     }
 
     private fun itemFlightClick(flight: Flight) {
-
+        val bundleFlight = basicFlight?.copy(
+            originName = flight.origin,
+            destinationName = flight.destination,
+            destinationCode = flight.destinationCode,
+            departureDate = flight.departureDate,
+            returnDate = flight.returnDate,
+        )
+        val fragment = OfferFlightsListFragment()
+        fragment.arguments = bundleOf(HomeFragment.DATA_BASIC_FLIGHT to bundleFlight)
+        parentFragmentManager.addFragment(R.id.frameMain, fragment)
     }
 
     override fun onDetach() {

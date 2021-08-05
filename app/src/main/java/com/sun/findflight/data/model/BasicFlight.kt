@@ -6,8 +6,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BasicFlight(
-    val origin: String,
-    val destination: String?,
+    val originCode: String,
+    val destinationCode: String?,
+    val originName: String? = null,
+    val destinationName: String? = null,
     val departureDate: String?,
     val oneWay: Boolean = false,
     val returnDate: String? = null,

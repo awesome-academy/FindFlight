@@ -3,6 +3,7 @@ package com.sun.findflight.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -14,6 +15,7 @@ import com.sun.findflight.data.model.Place
 import com.sun.findflight.databinding.FragmentHomeBinding
 import com.sun.findflight.ui.addpassenger.AddPassengerFragment
 import com.sun.findflight.ui.basicflightslist.BasicFlightsListFragment
+import com.sun.findflight.ui.offerflightslist.OfferFlightsListFragment
 import com.sun.findflight.ui.searchPlace.SearchPlaceFragment
 import com.sun.findflight.utils.*
 
@@ -59,11 +61,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
     override fun onClick(v: View?): Unit = with(viewBinding) {
         when (v) {
-            textSearchPlaceFrom -> parentFragmentManager.addFragment(
-                R.id.frameMain,
-                SearchPlaceFragment(),
-                KEY_PLACE_FROM
-            )
+            textSearchPlaceFrom -> {
+                textPlaceFrom.setTextColor(resources.getColor(R.color.color_pickled_bluewood, null))
+                parentFragmentManager.addFragment(
+                    R.id.frameMain,
+                    SearchPlaceFragment(),
+                    KEY_PLACE_FROM
+                )
+            }
             textSearchPlaceTo -> parentFragmentManager.addFragment(
                 R.id.frameMain,
                 SearchPlaceFragment(),
@@ -158,15 +163,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                 val dateTo = extractString(textSearchDateTo)
                 val returnDate = extractString(textSearchReturnDate)
                 val travelClass = spinnerTravelClass.selectedItem.toString()
-                val currencyCode = spinnerCurrency.selectedItem.toString().split(" ")[0]
-                val fragment = BasicFlightsListFragment()
+                val currencyCode = spinnerCurrency.selectedItem.toString().split(" ").first()
+                val fragment: Fragment
                 var departureDate: String? = null
-                dateFrom?.let { departureDate = it }
+                if (dateFrom == null || placeToObject == null) {
+                    dateFrom?.let { departureDate = it }
+                    fragment = BasicFlightsListFragment()
+                } else {
+                    departureDate = dateFrom
+                    fragment = OfferFlightsListFragment()
+                }
                 dateTo?.let { departureDate += ",$it" }
                 placeFromObject?.let {
                     basicFlight = BasicFlight(
-                        origin = it.iataCode,
-                        destination = placeToObject?.iataCode,
+                        originCode = it.iataCode,
+                        destinationCode = placeToObject?.iataCode,
+                        originName = placeFromObject?.detailedName,
+                        destinationName = placeToObject?.detailedName,
                         departureDate = departureDate,
                         oneWay = oneWay,
                         returnDate = returnDate,
@@ -182,7 +195,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
         }
     }
 
-    private fun placeFromIsValid() = viewBinding.textSearchPlaceFrom.text.isNotEmpty()
+    private fun placeFromIsValid(): Boolean {
+        with(viewBinding) {
+            if (textSearchPlaceFrom.text.isEmpty()) {
+                textPlaceFrom.setTextColor(resources.getColor(R.color.color_sunset_orange, null))
+                scrollViewHome.fullScroll(View.FOCUS_UP)
+                textSearchPlaceFrom.apply {
+                    this.setHintTextColor(
+                        resources.getColor(
+                            R.color.color_sunset_orange,
+                            null
+                        )
+                    )
+                    this.hint = context.getString(R.string.text_field_required)
+                    startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
+                }
+                return false
+            }
+            return true
+        }
+    }
 
     private fun extractString(textView: TextView) =
         if (textView.text.isNotEmpty()) textView.text.toString() else null

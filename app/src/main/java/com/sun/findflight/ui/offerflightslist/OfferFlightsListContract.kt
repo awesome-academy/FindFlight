@@ -12,6 +12,5 @@ interface OfferFlightsListContract {
 
     interface Presenter : BasePresenter {
         fun getOfferFlights(basicFlight: BasicFlight)
-        fun getOfferFlightsByUrl(url: String, basicFlight: BasicFlight)
     }
 }

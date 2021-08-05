@@ -45,8 +45,8 @@ class FlightRemoteDataSource private constructor() : FlightDataSource.Remote {
     private fun getJSONData(basicFlight: BasicFlight) = JSONObject(
         getNetworkData(
             ApiQuery.queryFlightSearch(
-                basicFlight.origin,
-                basicFlight.destination,
+                basicFlight.originCode,
+                basicFlight.destinationCode,
                 basicFlight.departureDate,
                 basicFlight.oneWay
             )

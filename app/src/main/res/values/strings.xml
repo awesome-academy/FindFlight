@@ -28,6 +28,7 @@
     <string name="text_choose_return_date">Choose return date</string>
     <string name="text_currency">Currency</string>
     <string name="text_departure_date">Departure date</string>
+    <string name="text_direct">Direct</string>
     <string name="text_field_required">This field is required!</string>
     <string name="text_filter">Filter</string>
     <string name="text_from">From:</string>
@@ -56,6 +57,7 @@
     <string name="text_set_time_reminder">Set time reminder</string>
     <string name="text_sort">Sort</string>
     <string name="text_start_date">Start:</string>
+    <string name="text_stops">stops</string>
     <string name="text_to">To:</string>
     <string name="text_travel_class">Travel class</string>
     <string name="text_turn_on_gps">Turn on GPS to get location!</string>

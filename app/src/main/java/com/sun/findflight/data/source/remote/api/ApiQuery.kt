@@ -67,13 +67,13 @@ object ApiQuery {
         destinationLocationCode: String,
         departureDate: String,
         returnDate: String?,
-        adults: Int,
-        children: Int?,
-        infants: Int?,
+        adults: String,
+        children: String?,
+        infants: String?,
         travelClass: String?,
         nonStop: Boolean?,
         currencyCode: String?,
-        maxPrice: Int?
+        maxPrice: String?
     ): String {
         val uri = createBaseUri()
             .appendPath(ApiConstants.CONTENT_VER2)
@@ -83,15 +83,15 @@ object ApiQuery {
             .appendQueryParameter(ApiConstants.DESTINATION_LOCATION_CODE, destinationLocationCode)
             .appendQueryParameter(ApiConstants.DEPARTURE_DATE, departureDate)
         returnDate?.let { uri.appendQueryParameter(ApiConstants.RETURN_DATE, it) }
-        uri.appendQueryParameter(ApiConstants.ADULTS, adults.toString())
+        uri.appendQueryParameter(ApiConstants.ADULTS, adults)
             .appendQueryParameter(ApiConstants.MAX_ITEMS, ApiConstants.DEFAULT_MAX_ITEM)
 
-        children?.let { uri.appendQueryParameter(ApiConstants.CHILDREN, it.toString()) }
-        infants?.let { uri.appendQueryParameter(ApiConstants.INFANTS, it.toString()) }
+        children?.let { uri.appendQueryParameter(ApiConstants.CHILDREN, it) }
+        infants?.let { uri.appendQueryParameter(ApiConstants.INFANTS, it) }
         travelClass?.let { uri.appendQueryParameter(ApiConstants.TRAVEL_CLASS, it) }
         nonStop?.let { uri.appendQueryParameter(ApiConstants.NONSTOP, it.toString()) }
         currencyCode?.let { uri.appendQueryParameter(ApiConstants.CURRENCY_CODE, it) }
-        maxPrice?.let { uri.appendQueryParameter(ApiConstants.MAX_PRICE, it.toString()) }
+        maxPrice?.let { uri.appendQueryParameter(ApiConstants.MAX_PRICE, it) }
 
         return uri.toString()
     }
