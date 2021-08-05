@@ -13,8 +13,8 @@ data class Segment(
     val carrierCode: String,
     val carrierNumber: String,
     val aircraftNumber: String,
-    var departureCountryImage: String?,
-    var arrivalCountryImage: String?,
+    var carrierName: String? = null,
+    var aircraftName: String? = null,
 ) : Parcelable {
 
     constructor(jsonObject: JSONObject) : this(
@@ -24,7 +24,5 @@ data class Segment(
         carrierNumber = jsonObject.getString(SegmentModelConst.CARRIER_NUMBER),
         aircraftNumber = jsonObject.getJSONObject(SegmentModelConst.AIRCRAFT)
             .getString(SegmentModelConst.AIRCRAFT_CODE),
-        departureCountryImage = null,
-        arrivalCountryImage = null
     )
 }
