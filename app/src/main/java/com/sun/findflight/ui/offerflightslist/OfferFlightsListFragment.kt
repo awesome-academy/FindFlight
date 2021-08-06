@@ -3,17 +3,17 @@ package com.sun.findflight.ui.offerflightslist
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import com.sun.findflight.R
 import com.sun.findflight.base.BaseFragment
 import com.sun.findflight.data.model.BasicFlight
 import com.sun.findflight.data.model.FlightDetail
 import com.sun.findflight.databinding.FragmentOfferFlightsListBinding
+import com.sun.findflight.ui.flightdetail.FlightDetailFragment
 import com.sun.findflight.ui.home.HomeFragment
 import com.sun.findflight.ui.main.MainActivity
 import com.sun.findflight.ui.offerflightslist.adapter.OfferFlightsListAdapter
-import com.sun.findflight.utils.RepositoryUtils
-import com.sun.findflight.utils.hide
-import com.sun.findflight.utils.show
-import com.sun.findflight.utils.showToast
+import com.sun.findflight.utils.*
 
 class OfferFlightsListFragment :
     BaseFragment<FragmentOfferFlightsListBinding>(),
@@ -71,10 +71,17 @@ class OfferFlightsListFragment :
     }
 
     private fun itemFlightDetailClick(flightDetail: FlightDetail) {
+        val fragment = FlightDetailFragment()
+        fragment.arguments = bundleOf(DATA_FLIGHT_DETAIL to flightDetail)
+        parentFragmentManager.addFragment(R.id.frameMain, fragment)
     }
 
     override fun onDetach() {
         containerContext.setBottomNavigationVisibility(true)
         super.onDetach()
+    }
+
+    companion object {
+        const val DATA_FLIGHT_DETAIL = "detail_flight_data"
     }
 }

@@ -1,13 +1,7 @@
 package com.sun.findflight.utils
 
-import com.sun.findflight.data.repository.FlightOfferRepository
-import com.sun.findflight.data.repository.FlightRepository
-import com.sun.findflight.data.repository.PlaceRepository
-import com.sun.findflight.data.repository.TokenRepository
-import com.sun.findflight.data.source.remote.FlightOfferRemoteDataSource
-import com.sun.findflight.data.source.remote.FlightRemoteDataSource
-import com.sun.findflight.data.source.remote.PlaceRemoteDataSource
-import com.sun.findflight.data.source.remote.TokenRemoteDataSource
+import com.sun.findflight.data.repository.*
+import com.sun.findflight.data.source.remote.*
 
 object RepositoryUtils {
 
@@ -29,5 +23,10 @@ object RepositoryUtils {
     fun getFlightOfferRepository(): FlightOfferRepository {
         val remote = FlightOfferRemoteDataSource.getInstance()
         return FlightOfferRepository.getInstance(remote)
+    }
+
+    fun getFlightInfoRepository(): FlightInfoRepository {
+        val remote = FlightInfoRemoteDataSource.getInstance()
+        return FlightInfoRepository.getInstance(remote)
     }
 }
