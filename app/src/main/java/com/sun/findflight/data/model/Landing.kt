@@ -12,6 +12,7 @@ data class Landing(
     val placeCode: String,
     val terminal: String?,
     val time: String,
+    var timezone: String? = null,
     var name: String? = null,
     var countryCode: String? = null
 ) : Parcelable {
