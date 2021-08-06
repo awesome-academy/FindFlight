@@ -15,8 +15,10 @@
     <string name="text_age_adult">Age 12+</string>
     <string name="text_age_child">Age 2–11</string>
     <string name="text_age_infant">Age 0–1</string>
+    <string name="text_aircraft">Aircraft</string>
     <string name="text_apply">Apply</string>
     <string name="text_around_current_location">Around current location</string>
+    <string name="text_arrival_terminal">Arrival terminal</string>
     <string name="text_available_seats">Available Seats</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_carrier">Carrier</string>
@@ -28,6 +30,7 @@
     <string name="text_choose_return_date">Choose return date</string>
     <string name="text_currency">Currency</string>
     <string name="text_departure_date">Departure date</string>
+    <string name="text_departure_terminal">Departure terminal</string>
     <string name="text_direct">Direct</string>
     <string name="text_fare">Fare</string>
     <string name="text_field_required">This field is required!</string>
@@ -37,6 +40,7 @@
     <string name="text_from_required">From*:</string>
     <string name="text_infant">Infant</string>
     <string name="text_info">Info</string>
+    <string name="text_layover">layover</string>
     <string name="text_leave_empty">(leave empty if you want our suggestions)</string>
     <string name="text_oneway">Oneway trip:</string>
     <string name="text_open_setting">Settings</string>
