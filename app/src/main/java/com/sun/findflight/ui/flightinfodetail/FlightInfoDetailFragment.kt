@@ -30,6 +30,12 @@ class FlightInfoDetailFragment : BaseFragment<FragmentFlightInfoDetailBinding>()
     }
 
     override fun initData() {
+        val bundle = this.arguments
+        val flightDetail =
+            bundle?.getParcelable<FlightDetail>(OfferFlightsListFragment.DATA_FLIGHT_DETAIL)
+        flightDetail?.let {
+            segmentAdapter.updateData(it.segments.toMutableList())
+        }
     }
 
     private fun itemSegmentClick(segment: Segment) = Unit
