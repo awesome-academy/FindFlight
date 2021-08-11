@@ -16,7 +16,7 @@ object ApiConstants {
     const val FLIGHT_OFFER = "flight-offers"
 
     const val MAX_ITEM_PER_PAGE = "page[limit]"
-    const val DEFAULT_MAX_ITEM_PER_PAGE = "50"
+    const val DEFAULT_MAX_ITEM_PER_PAGE = "3"
     const val MAX_ITEMS = "max"
     const val DEFAULT_MAX_ITEM = "50"
     const val PAGE_INDEX = "page[offset]"
