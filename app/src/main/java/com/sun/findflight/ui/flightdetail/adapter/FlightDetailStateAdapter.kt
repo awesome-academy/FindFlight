@@ -1,10 +1,10 @@
 package com.sun.findflight.ui.flightdetail.adapter
 
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.sun.findflight.data.model.FlightDetail
+import com.sun.findflight.ui.flightfaredetail.FlightFareDetailFragment
 import com.sun.findflight.ui.flightinfodetail.FlightInfoDetailFragment
 import com.sun.findflight.ui.offerflightslist.OfferFlightsListFragment
 
@@ -15,7 +15,7 @@ class FlightDetailStateAdapter(
 
     private val fragments = arrayOf(
         FlightInfoDetailFragment(),
-        Fragment()
+        FlightFareDetailFragment()
     )
 
     override fun createFragment(position: Int) = fragments[position].apply {
