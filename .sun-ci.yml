@@ -1,7 +1,7 @@
 workspace: true
 
 stages:
-  - lint 
+  - lint
 
 jobs:
 - name: Lint checking
@@ -12,6 +12,7 @@ jobs:
     ROOM_ID: "96370317"
       # Insert the chatwork accounts which you want to mention when the pull request was verified
     MEMBERS: "[To:5903059] Tran Dinh Vinh"
+    JVM_OPTS: -Xmx2048m
   cache:
   - key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     paths:

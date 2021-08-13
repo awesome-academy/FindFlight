@@ -10,6 +10,7 @@
     <string name="error_over_people_number">Max 9 passengers!</string>
     <string name="error_parse_json">Error parse json</string>
     <string name="text_add_passenger">ADD PASSENGER</string>
+    <string name="text_added_to_favourite">Added to favourite</string>
     <string name="text_adult">Adult</string>
     <string name="text_adult_default">1</string>
     <string name="text_age_adult">Age 12+</string>
@@ -30,6 +31,7 @@
     <string name="text_choose_return_date">Choose return date</string>
     <string name="text_class">Class</string>
     <string name="text_currency">Currency</string>
+    <string name="text_deleted_from_favourite">Deleted from favourite</string>
     <string name="text_departure_date">Departure date</string>
     <string name="text_departure_terminal">Departure terminal</string>
     <string name="text_direct">Direct</string>
@@ -51,6 +53,8 @@
     <string name="text_largest_available_seats">Largest Available Seats</string>
     <string name="text_layover">layover</string>
     <string name="text_leave_empty">(leave empty if you want our suggestions)</string>
+    <string name="text_longest_duration">Longest Duration</string>
+    <string name="text_lowest_price">Lowest Price</string>
     <string name="text_oneway">Oneway trip:</string>
     <string name="text_open_setting">Settings</string>
     <string name="text_other_info">Other information</string>
@@ -71,6 +75,8 @@
     <string name="text_return">:Return</string>
     <string name="text_return_date">Return date</string>
     <string name="text_set_time_reminder">Set time reminder</string>
+    <string name="text_shortest_duration">Shortest Duration</string>
+    <string name="text_smallest_available_seats">Smallest Available Seats</string>
     <string name="text_sort">Sort</string>
     <string name="text_start_date">Start:</string>
     <string name="text_stops">stops</string>
