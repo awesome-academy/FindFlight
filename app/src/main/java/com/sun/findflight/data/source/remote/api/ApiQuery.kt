@@ -104,7 +104,7 @@ object ApiQuery {
         .appendQueryParameter(ApiConstants.MAX_ITEMS, ApiConstants.DEFAULT_MAX_ITEM)
         .appendQueryParameter(
             ApiConstants.MAX_ITEM_PER_PAGE,
-            ApiConstants.DEFAULT_MAX_ITEM_PER_PAGE
+            ApiConstants.DEFAULT_MIN_ITEM_PER_PAGE
         )
         .toString()
 
